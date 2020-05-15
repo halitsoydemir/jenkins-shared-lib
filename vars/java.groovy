@@ -42,21 +42,11 @@ volumes: [
 
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
 
-    stage('checkout'){
-        steps {
-            sh 'echo deploying...'
-
-            git branch: pipelineParams.branch, credentialsId: 'GitCredentials', url: pipelineParams.scmUrl
-        }
-    }
-
     stage('Build') {
 
       container('maven') {
 
       sh 'chmod +x mvnw'
-
-      // sh 'gradle test'
 
         sh './mvnw clean package -DskipTests=true'
 
@@ -77,8 +67,6 @@ volumes: [
           passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
 
           sh """
-
-            docker login -u ${DOCKER_HUB_USER} -p ${DOCKER_HUB_PASSWORD}
 
             docker build -t test/myimage:${gitCommit} .
 
