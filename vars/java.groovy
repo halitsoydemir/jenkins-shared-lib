@@ -10,7 +10,7 @@ podTemplate(label: label,
 
 containers: [
 
-  containerTemplate(name: 'maven', image: 'registry.iyzico.net/iyzico/iyzipay/base:j11', command: 'cat', ttyEnabled: true, imagePullSecrets: 'iyziregisterys'),
+  containerTemplate(name: 'maven', image: 'registry.iyzico.net/iyzico/iyzipay/base:j11', command: 'cat', ttyEnabled: true),
 
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
 
@@ -21,7 +21,7 @@ containers: [
   containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:latest', args: '${computer.jnlpmac} ${computer.name}')
 
 ],
-
+imagePullSecrets: 'iyziregisterys',
 volumes: [
 
   //hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
