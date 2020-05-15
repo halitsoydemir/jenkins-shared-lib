@@ -10,7 +10,7 @@ podTemplate(label: label,
 
 containers: [
 
-  containerTemplate(name: 'maven', image: 'maven:3.3.9-jdk-8-alpine', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'maven', image: ' registry.iyzico.net/iyzico/iyzipay/base:j8', command: 'cat', ttyEnabled: true),
 
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
 
@@ -55,14 +55,8 @@ volumes: [
     stage('Create Docker images') {
 
       container('docker') {
-
-        withCredentials([[$class: 'UsernamePasswordMultiBinding',
-
-          credentialsId: 'dockerhub',
-
-          usernameVariable: 'DOCKER_HUB_USER',
-
-          passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
+          
+          withCredentials([usernamePassword( credentialsId: 'halit.soydemir.registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
 
           sh """
 
