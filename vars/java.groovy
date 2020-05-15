@@ -5,6 +5,8 @@ def call(body) {
     body()
 
 def label = "worker-${UUID.randomUUID().toString()}"
+withCredentials([usernamePassword( credentialsId: 'halit.soydemir.registry', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
 
 podTemplate(label: label,
 
