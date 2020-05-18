@@ -60,11 +60,11 @@ volumes: [
 
           sh """
 
-            docker build -t registry.iyzico.net/iyzico/iyzipay/${pipelineParams.projectName}:${env.BUILD_NUMBER} .
+            docker build -t registry.iyzico.net/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
 
             docker images
             
-            docker push registry.iyzico.net/iyzico/iyzipay/${pipelineParams.projectName}:${env.BUILD_NUMBER}
+            docker push registry.iyzico.net/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER}
 
             """
 
