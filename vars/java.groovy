@@ -60,7 +60,7 @@ volumes: [
 
           sh """
 
-            docker build -t test/myimage:${gitCommit} .
+            docker build -t registry.iyzico.net/iyzico/iyzipay/${pipelineParams.projectName}:${env.BUILD_NUMBER} .
 
             docker images
 
