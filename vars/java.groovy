@@ -60,7 +60,7 @@ volumes: [
 
           sh """
 
-            docker login registry.iyzico.net -u ${$USERNAME} -p ${PASSWORD}
+            docker login registry.iyzico.net -u ${USERNAME} -p ${PASSWORD}
             
             docker build -t registry.iyzico.net/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
 
