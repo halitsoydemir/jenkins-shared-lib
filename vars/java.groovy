@@ -10,7 +10,7 @@ podTemplate(label: label,
 
 containers: [
 
-  containerTemplate(name: 'maven', image: 'registry.iyzico.net/iyzico/misc/maven-cache', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'maven', image: '${env.REGISTRY_ADDRESS}/iyzico/misc/maven-cache', command: 'cat', ttyEnabled: true),
 
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
 
@@ -60,13 +60,13 @@ volumes: [
 
           sh """
 
-            docker login registry.iyzico.net -u ${USERNAME} -p ${PASSWORD}
+            docker login ${env.REGISTRY_ADDRESS} -u ${USERNAME} -p ${PASSWORD}
             
-            docker build -t registry.iyzico.net/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
+            docker build -t r${env.REGISTRY_ADDRESS}/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
 
             docker images
             
-            docker push registry.iyzico.net/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER}
+            docker push ${env.REGISTRY_ADDRESS}/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER}
 
             """
 
