@@ -46,7 +46,7 @@ volumes: [
 
       container('maven') {
 
-        sh 'mvn clean package -DskipTests=true'
+        sh 'mvn -s settings.xml clean package -DskipTests=true'
 
       }
 
