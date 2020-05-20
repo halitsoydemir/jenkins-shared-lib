@@ -21,7 +21,7 @@ containers: [
   containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:latest', args: '${computer.jnlpmac} ${computer.name}')
 
 ],
-            imagePullSecrets: ['iyziregisterys'],
+            imagePullSecrets: ['${env.REGISTRY_ADDRESS}'],
 volumes: [
 
   //hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
