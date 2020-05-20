@@ -10,7 +10,7 @@ podTemplate(label: label,
 
 containers: [
 
-  containerTemplate(name: 'maven', image: 'registry.iyzico.net/iyzico/iyzipay/base:j11', command: 'cat', ttyEnabled: true),
+  containerTemplate(name: 'maven', image: 'registry.iyzico.net/iyzico/misc/maven-cache', command: 'cat', ttyEnabled: true),
 
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true),
 
