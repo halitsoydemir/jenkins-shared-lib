@@ -21,7 +21,7 @@ containers: [
   containerTemplate(name: 'jnlp', image: 'jenkinsci/jnlp-slave:latest', args: '${computer.jnlpmac} ${computer.name}')
 
 ],
-            imagePullSecrets: ["${env.REGISTRY_ADDRESS}"],
+            imagePullSecrets: ["${env.REGISTRY_SECRET}"],
 volumes: [
 
   //hostPathVolume(mountPath: '/home/gradle/.gradle', hostPath: '/tmp/jenkins/.gradle'),
@@ -62,7 +62,7 @@ volumes: [
 
             docker login ${env.REGISTRY_ADDRESS} -u ${USERNAME} -p ${PASSWORD}
             
-            docker build -t r${env.REGISTRY_ADDRESS}/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
+            docker build -t ${env.REGISTRY_ADDRESS}/iyzico/iyzipay/${pipelineParams.registeryName}:${env.BUILD_NUMBER} .
 
             docker images
             
