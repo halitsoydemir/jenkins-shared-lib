@@ -41,6 +41,16 @@ volumes: [
     def shortGitCommit = "${gitCommit[0..10]}"
 
     def previousGitCommit = sh(script: "git rev-parse ${gitCommit}~", returnStdout: true)
+      
+      stage('Test') {
+
+      container('maven') {
+
+        sh 'ls'
+
+      }
+
+    }
 
     stage('Build') {
 
