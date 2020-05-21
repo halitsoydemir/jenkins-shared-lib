@@ -100,7 +100,13 @@ volumes: [
 
       container('helm') {
 
-        sh "helm list"
+        sh """
+        
+        cd helm
+        
+        helm upgrade --install ${pipelineParams.projectName} ${pipelineParams.projectName} -f ${pipelineParams.projectName}/values.yaml --set image.tag="${env.BUILD_NUMBER}" --set image.repository="${env.REGISTRY_ADDRESS}/iyzico/iyzipay/${pipelineParams.registeryName}" --namespace=default
+        
+        """
 
       }
 
